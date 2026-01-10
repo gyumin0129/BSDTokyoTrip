@@ -138,14 +138,15 @@
                 <div class="flex flex-col items-center justify-center mt-1">
                     <div class="flex items-center justify-center gap-1">
                         <span id="rate-trend-percent"
-                            class="text-2xl font-bold text-[#F04452] tracking-tighter">--%</span>
+                            class="text-2xl font-bold text-[#F04452] tracking-tighter">0.00%</span>
                         <i id="rate-trend-icon" class="ph-bold ph-caret-up text-xs text-[#F04452]"></i>
                     </div>
-                    <p id="rate-trend-diff" class="text-[11px] font-bold text-[#F04452] mt-0.5">--원</p>
+                    <p id="rate-trend-diff" class="text-[11px] font-bold text-[#F04452] mt-0.5">▲ 0.00원</p>
                 </div>
 
-                <div class="w-full h-1 bg-gray-50 rounded-full mt-3 overflow-hidden">
-                    <div id="rate-trend-bar" class="h-full bg-[#F04452] transition-all duration-1000 mx-auto"
+                <div class="w-full h-[3px] bg-gray-50 rounded-full mt-3 overflow-hidden max-w-[70px] mx-auto">
+                    <div id="rate-trend-bar"
+                        class="h-full bg-[#F04452] transition-all duration-1000 shadow-[0_0_8px_rgba(240,68,82,0.2)]"
                         style="width: 0%"></div>
                 </div>
 
