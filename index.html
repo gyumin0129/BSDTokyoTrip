@@ -110,7 +110,8 @@
 
     <main id="tab-plan" class="tab-content active px-5 animate-fade-in">
         <div class="flex gap-4 mb-6 text-center">
-            <div class="flex-1 bg-white p-6 rounded-[28px] border border-gray-50">
+            <div
+                class="flex-1 bg-white p-6 rounded-[28px] border border-gray-50 active:scale-95 transition cursor-default">
                 <p class="text-xs text-gray-400 font-bold mb-1 uppercase tracking-widest">도쿄 날씨</p>
                 <div id="weather-loading" class="text-sm text-gray-300 py-2 font-bold">불러오는 중...</div>
                 <div id="weather-info" class="hidden flex items-center justify-between w-full px-1">
@@ -130,25 +131,28 @@
                     </div>
                 </div>
             </div>
-            <div class="flex-1 bg-white p-6 rounded-[28px] border border-gray-50 active:scale-95 transition relative overflow-hidden">
-    <p class="text-xs text-gray-400 font-bold mb-1 uppercase tracking-widest">환율 트렌드</p>
-    
-    <div class="flex flex-col mt-1">
-        <div class="flex items-baseline gap-1">
-            <span id="rate-trend-percent" class="text-2xl font-bold text-[#F04452]">0.00%</span>
-            <i id="rate-trend-icon" class="ph-bold ph-minus text-xs text-gray-300"></i>
-        </div>
-        <p id="rate-trend-diff" class="text-[11px] font-bold text-gray-400 mt-0.5">0.00원</p>
-    </div>
+            <div
+                class="flex-1 bg-white p-6 rounded-[28px] border border-gray-50 active:scale-95 transition relative overflow-hidden flex flex-col items-center text-center">
+                <p class="text-xs text-gray-400 font-bold mb-1 uppercase tracking-widest w-full">환율 트렌드</p>
 
-    <div class="w-full h-1 bg-gray-50 rounded-full mt-3 overflow-hidden">
-        <div id="rate-trend-bar" class="h-full bg-gray-200 transition-all duration-1000" style="width: 10%"></div>
-    </div>
-    
-    <p class="text-[9px] text-gray-300 mt-3 font-medium leading-tight">
-        * 전일 대비 실시간 변동<br>투자 책임은 본인에게 있음
-    </p>
-</div>
+                <div class="flex flex-col items-center justify-center mt-1">
+                    <div class="flex items-center justify-center gap-1">
+                        <span id="rate-trend-percent"
+                            class="text-2xl font-bold text-[#F04452] tracking-tighter">--%</span>
+                        <i id="rate-trend-icon" class="ph-bold ph-caret-up text-xs text-[#F04452]"></i>
+                    </div>
+                    <p id="rate-trend-diff" class="text-[11px] font-bold text-[#F04452] mt-0.5">--원</p>
+                </div>
+
+                <div class="w-full h-1 bg-gray-50 rounded-full mt-3 overflow-hidden">
+                    <div id="rate-trend-bar" class="h-full bg-[#F04452] transition-all duration-1000 mx-auto"
+                        style="width: 0%"></div>
+                </div>
+
+                <p class="text-[9px] text-gray-300 mt-3 font-medium leading-tight w-full">
+                    * 전일 대비 실시간 변동<br>투자 책임은 본인에게 있음
+                </p>
+            </div>
         </div>
         </div>
         <div class="toss-card p-0 overflow-hidden mb-6">
