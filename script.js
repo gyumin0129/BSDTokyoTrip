@@ -144,6 +144,36 @@ function changePeople(delta) {
     calculateDutch();
 }
 
+// 환율 등락폭 계산 및 UI 업데이트
+function updateRateTrend(currentRate) {
+    const baseRate = 900; // 기준점 (혹은 전일 종가 API 데이터를 쓰면 더 정확함)
+    const diff = currentRate - baseRate;
+    const percent = ((diff / baseRate) * 100).toFixed(2);
+
+    const percentEl = document.getElementById('rate-trend-percent');
+    const diffEl = document.getElementById('rate-trend-diff');
+    const iconEl = document.getElementById('rate-trend-icon');
+    const barEl = document.getElementById('rate-trend-bar');
+
+    if (!percentEl) return;
+
+    const isUp = diff >= 0;
+    const color = isUp ? '#F04452' : '#3182F6'; // 상승 빨강, 하락 파랑
+    const icon = isUp ? 'ph-caret-up' : 'ph-caret-down';
+
+    percentEl.innerText = `${isUp ? '+' : ''}${percent}%`;
+    percentEl.style.color = color;
+    diffEl.innerText = `${isUp ? '▲' : '▼'} ${Math.abs(diff).toFixed(2)}원`;
+    diffEl.style.color = color;
+    iconEl.className = `ph-bold ${icon}`;
+    iconEl.style.color = color;
+
+    // 바 애니메이션 (최대 5% 변동폭 기준 시각화)
+    const barWidth = Math.min(Math.abs(percent) * 20, 100);
+    barEl.style.width = `${barWidth}%`;
+    barEl.style.backgroundColor = color;
+}
+
 /** [PART 4] 지도 및 일정 **/
 let map = L.map('map', { zoomControl: false });
 let markers = [];
@@ -221,7 +251,7 @@ function focusMap(la, ln) {
     const mapElement = document.getElementById('map');
     if (mapElement) {
         // 상단 네비게이션 바(sticky) 높이를 고려하여 80~100px 정도 여유를 둡니다.
-        const offset = 90; 
+        const offset = 90;
         const elementPosition = mapElement.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -233,7 +263,7 @@ function focusMap(la, ln) {
 
     // 2. 지도 중심 이동 및 팝업 열기 (기존 로직)
     map.flyTo([la, ln], 17, { animate: true, duration: 1.2, easeLinearity: 0.25 });
-    
+
     markers.forEach(m => {
         // 좌표가 일치하는 마커의 팝업을 자동으로 띄웁니다.
         if (Math.abs(m.getLatLng().lat - la) < 0.0001 && Math.abs(m.getLatLng().lng - ln) < 0.0001) {
@@ -269,13 +299,13 @@ function toggleTicket(id) {
     const el = document.getElementById(id);
     const btnId = 'btn-text-' + id.split('-')[1];
     const btn = document.getElementById(btnId);
-    
+
     // 클래스 토글 (애니메이션 실행)
     const isExpanded = el.classList.toggle('expanded');
-    
+
     if (btn) {
         btn.innerText = isExpanded ? "닫기" : "열기";
-        
+
         // 버튼 스타일도 상태에 맞춰 쫀득하게 변경 (선택사항)
         if (isExpanded) {
             btn.classList.replace('bg-purple-50', 'bg-gray-100');
