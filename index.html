@@ -19,13 +19,20 @@
 
 <body class="max-w-md mx-auto min-h-screen pb-24 bg-[#F2F4F6] text-[#333D4B]">
 
-    <header class="pt-16 pb-10 px-6 text-center">
-    <div class="inline-block relative group">
-        <div class="absolute -inset-1 bg-gradient-to-r from-orange-100 to-yellow-100 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-        
+    <header class="pt-16 pb-8 px-8 flex items-center gap-5 animate-fade-in">
+    <div class="flex-shrink-0 relative">
+        <div class="absolute inset-0 bg-orange-200 blur-xl opacity-20"></div>
         <img src="logo.png" 
              alt="BSD 열도 침략 계획" 
-             class="relative w-full max-w-[260px] h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:scale-[1.03] transition duration-500 ease-out cursor-pointer animate-fade-in">
+             class="relative w-16 h-16 rounded-[18px] object-cover shadow-sm border border-gray-100 hover:rotate-3 transition duration-300">
+    </div>
+
+    <div class="flex flex-col">
+        <div class="flex items-center gap-2 mb-0.5">
+            <h1 class="text-[22px] font-bold text-[#191F28] tracking-tight">열도 침략 계획</h1>
+            <span class="bg-orange-50 text-orange-500 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-tighter">BSD ver.</span>
+        </div>
+        <p class="text-sm text-gray-400 font-medium">2026.02.07. - 02.13· Tokyo</p>
     </div>
 </header>
 
