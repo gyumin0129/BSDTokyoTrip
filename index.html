@@ -17,38 +17,38 @@
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
     <meta property="og:type" content="website">
-<meta property="og:title" content="BSD 열도 침략 계획 🗼">
-<meta property="og:description" content="BSD의 우당탕탕 도쿄 여행 도우미!">
-<meta property="og:image" content="logo_og.png">
-<meta property="og:url" content="https://bsdtokyotrip.vercel.app">
+    <meta property="og:title" content="BSD 열도 침략 계획 🗼">
+    <meta property="og:description" content="BSD의 우당탕탕 도쿄 여행 도우미!">
+    <meta property="og:image" content="logo_og.png">
+    <meta property="og:url" content="https://bsdtokyotrip.vercel.app">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BSD 열도 침략 계획 🗼">
-<meta name="twitter:description" content="BSD의 우당탕탕 도쿄 여행 도우미!">
-<meta name="twitter:image" content="logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BSD 열도 침략 계획 🗼">
+    <meta name="twitter:description" content="BSD의 우당탕탕 도쿄 여행 도우미!">
+    <meta name="twitter:image" content="logo.png">
     <script src="script.js" defer></script>
 </head>
 
 <body class="max-w-md mx-auto min-h-screen pb-24 bg-[#F2F4F6] text-[#333D4B]">
 
     <header class="pt-16 pb-8 px-8 flex items-center gap-5 animate-fade-in">
-    <div class="flex-shrink-0 relative">
-        <div class="absolute inset-0 bg-orange-200 blur-xl opacity-20"></div>
-        <img src="logo.png" 
-             alt="BSD 열도 침략 계획" 
-             class="relative w-16 h-16 rounded-[18px] object-cover shadow-sm border border-gray-100 hover:rotate-3 transition duration-300">
-    </div>
-
-    <div class="flex flex-col">
-        <div class="flex items-center gap-2 mb-0.5">
-            <h1 class="text-[22px] font-bold text-[#191F28] tracking-tight">열도 침략 계획</h1>
-            <span class="bg-orange-50 text-[#FF5D29] text-[9px] px-2 py-0.5 rounded-full font-medium tracking-tight border border-orange-100/50">
-                made by. <span class="font-bold text-[#D44A1D]">GM</span>
-            </span>
+        <div class="flex-shrink-0 relative">
+            <div class="absolute inset-0 bg-orange-200 blur-xl opacity-20"></div>
+            <img src="logo.png" alt="BSD 열도 침략 계획"
+                class="relative w-16 h-16 rounded-[18px] object-cover shadow-sm border border-gray-100 hover:rotate-3 transition duration-300">
         </div>
-        <p class="text-sm text-gray-400 font-medium tracking-tight">2026.02.07. - 02.13. · 도쿄</p>
-    </div>
-</header>
+
+        <div class="flex flex-col">
+            <div class="flex items-center gap-2 mb-0.5">
+                <h1 class="text-[22px] font-bold text-[#191F28] tracking-tight">열도 침략 계획</h1>
+                <span
+                    class="bg-orange-50 text-[#FF5D29] text-[9px] px-2 py-0.5 rounded-full font-medium tracking-tight border border-orange-100/50">
+                    made by. <span class="font-bold text-[#D44A1D]">GM</span>
+                </span>
+            </div>
+            <p class="text-sm text-gray-400 font-medium tracking-tight">2026.02.07. - 02.13. · 도쿄</p>
+        </div>
+    </header>
 
     <section class="px-5 mb-8">
         <div class="toss-card relative overflow-hidden bg-white">
@@ -130,12 +130,27 @@
                     </div>
                 </div>
             </div>
-            <div class="flex-1 bg-white p-6 rounded-[28px] border border-gray-50 cursor-pointer active:scale-95 transition"
-                onclick="window.open('https://www.google.co.kr/maps/@35.681236,139.767125,13z/data=!5m1!1e2?hl=ko', '_blank')">
-                <p class="text-xs text-gray-400 font-bold mb-1 uppercase tracking-widest">지하철 정보</p>
-                <div class="text-4xl mb-1 text-[#3182F6]"><i class="ph-fill ph-train"></i></div>
-                <div class="text-sm font-bold text-gray-600 mt-2 underline text-[#3182F6]">실시간 지연 확인</div>
+            <div
+                class="flex-1 bg-white p-6 rounded-[28px] border border-gray-50 active:scale-95 transition relative overflow-hidden">
+                <p class="text-xs text-gray-400 font-bold mb-1 uppercase tracking-widest">환율 트렌드</p>
+
+                <div class="flex flex-col mt-1">
+                    <div class="flex items-baseline gap-1">
+                        <span id="rate-trend-percent" class="text-2xl font-bold text-[#F04452]">--%</span>
+                        <i id="rate-trend-icon" class="ph-bold ph-caret-up text-xs text-[#F04452]"></i>
+                    </div>
+                    <p id="rate-trend-diff" class="text-[11px] font-bold text-[#F04452] mt-0.5">--원</p>
+                </div>
+
+                <div class="w-full h-1 bg-gray-50 rounded-full mt-3 overflow-hidden">
+                    <div id="rate-trend-bar" class="h-full bg-[#F04452] transition-all duration-1000" style="width: 0%">
+                    </div>
+                </div>
+
+                <p class="text-[9px] text-gray-300 mt-3 font-medium leading-tight">
+                    * 전일 대비 실시간 변동<br>투자 책임은 본인에게 있음
             </div>
+        </div>
         </div>
         <div class="toss-card p-0 overflow-hidden mb-6">
             <div id="map"></div>
