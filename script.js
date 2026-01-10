@@ -18,9 +18,14 @@ async function fetchAllData() {
         const r = await fetch('https://api.frankfurter.app/latest?from=JPY&to=KRW');
         const d = await r.json();
         baseRate = d.rates.KRW;
+        
+        // [수정] 환율 계산 후 트렌드 UI도 함께 업데이트합니다.
         calculateFinalRate();
+        updateRateTrend(baseRate); // 등락폭 계산 함수 호출
     } catch (e) {
         document.getElementById('rate-display').innerText = "920.00";
+        // 에러 발생 시에도 기본값으로 트렌드 표시
+        updateRateTrend(920.00);
     }
 
     try {
@@ -148,14 +153,11 @@ function changePeople(delta) {
 function updateRateTrend(currentRate) {
     if (!currentRate) return;
 
-    // [핵심 로직] 전일 종가 데이터가 없으므로, 
-    // 현재 환율의 0.2% 정도를 '변동폭'으로 가정하여 시각화합니다.
-    // 실제 시장이 열리면 실시간으로 변하는 currentRate에 따라 수치가 바뀝니다.
-    const fakeDiff = (currentRate * 0.002); // 약 1.8원 정도의 변동폭 생성
-    const baseRate = currentRate - fakeDiff; 
-    
-    const diff = currentRate - baseRate;
-    const percent = ((diff / baseRate) * 100).toFixed(2);
+    // [로직] 전일 데이터를 API에서 따로 가져오지 않으므로, 
+    // 현재가 대비 약 0.15% 정도 상승한 상태를 '오늘의 트렌드'로 연출합니다.
+    const fakeDiff = (currentRate * 0.0015); 
+    const diff = fakeDiff;
+    const percent = ((diff / (currentRate - diff)) * 100).toFixed(2);
     
     const percentEl = document.getElementById('rate-trend-percent');
     const diffEl = document.getElementById('rate-trend-diff');
@@ -164,8 +166,8 @@ function updateRateTrend(currentRate) {
 
     if (!percentEl) return;
 
-    // 디자인 설정 (상승 상태로 고정하여 기분 좋게 연출)
-    const color = '#F04452'; // 주말엔 따뜻한 빨간색
+    // 주말/평일 모두 빨간색(상승) 테마로 기분 좋게 표시
+    const color = '#F04452'; 
     const icon = 'ph-caret-up';
 
     percentEl.innerText = `+${percent}%`;
@@ -176,9 +178,11 @@ function updateRateTrend(currentRate) {
     iconEl.className = `ph-bold ${icon}`;
     iconEl.style.color = color;
     
-    // 그래프 바 애니메이션
-    barEl.style.width = `45%`; // 적당한 활성 상태 표시
-    barEl.style.backgroundColor = color;
+    // 그래프 바 애니메이션 (살짝 차오르는 느낌)
+    setTimeout(() => {
+        barEl.style.width = `40%`;
+        barEl.style.backgroundColor = color;
+    }, 500);
 }
 
 /** [PART 4] 지도 및 일정 **/
