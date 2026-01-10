@@ -1,0 +1,257 @@
+/* [보정] 전체 글꼴 및 가독성 최적화 */
+body {
+    word-break: keep-all;
+    /* 한글 단어가 중간에 끊기지 않음 */
+    letter-spacing: -0.03em;
+    /* 자간을 살짝 좁혀서 단단한 느낌 추가 */
+    -webkit-font-smoothing: antialiased;
+    /* 글자 테두리를 부드럽게 */
+}
+
+/* [보정] 날씨 상세 정보 줄간격 보정 */
+#weather-info {
+    line-height: 1.3;
+}
+
+#weather-info span {
+    letter-spacing: -0.01em;
+}
+
+/* 1. 기본 설정 및 텍스트 밸런스 */
+body {
+    font-family: "Pretendard", -apple-system, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.03em;
+    font-size: 16px;
+    line-height: 1.5;
+    word-break: keep-all;
+    /* 한글 줄바꿈 최적화 */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* 2. 카드 디자인 */
+.toss-card {
+    border-radius: 32px;
+    padding: 28px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    background-color: #ffffff;
+}
+
+/* 3. 탭 애니메이션 */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s cubic-bezier(0.2, 0, 0, 1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 4. 환율 슬라이더 */
+.toss-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #E5E8EB;
+    border-radius: 12px;
+    outline: none;
+}
+
+.toss-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 26px;
+    height: 26px;
+    background: #FFFFFF;
+    border: 3px solid #3182F6;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(49, 130, 246, 0.2);
+}
+
+/* 5. 입력창 및 결과창 */
+.custom-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-size: 42px;
+    font-weight: 700;
+    color: #191F28;
+    outline: none;
+    padding: 4px 0;
+}
+
+#trans-output {
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+/* 6. 지도 및 일정 버튼 반응형 효과 (전면 재수정) */
+#map {
+    height: 380px;
+    width: 100%;
+    z-index: 1;
+}
+
+/* 버튼 기본 애니메이션 설정 */
+.day-btn {
+    transition: all 0.2s ease-in-out;
+    -webkit-tap-highlight-color: transparent;
+    /* 모바일 터치 시 파란 박스 제거 */
+}
+
+/* [호버 효과] - Tailwind의 배경색을 덮어쓰지 않고 필터로 처리하여 무조건 작동 */
+.day-btn:hover {
+    filter: brightness(0.92);
+    transform: translateY(-2px);
+}
+
+/* [클릭 효과] */
+.day-btn:active {
+    transform: scale(0.94);
+    filter: brightness(0.85);
+}
+
+/* 선택 안 된 버튼(흰색) 보정 */
+.day-btn.bg-white:hover {
+    background-color: #f3f4f5 !important;
+}
+
+/* 선택 된 버튼(파란색) 보정 - 에디터 오류 방지를 위해 속성 선택자 사용 */
+.day-btn[class*="bg-[#3182F6]"]:hover {
+    background-color: #1b64da !important;
+}
+
+/* [추가] 리스트 및 버튼 전체 인터랙션 강화 */
+#schedule-list .toss-card {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: 1px solid transparent;
+    /* 호버 시 테두리 변화를 위해 추가 */
+}
+
+/* 리스트 항목을 누르고 있을 때 (손맛 피드백) */
+#schedule-list .toss-card:active {
+    transform: scale(0.96);
+    background-color: #F9FAFB;
+    filter: brightness(0.95);
+}
+
+/* 데스크탑 마우스 호버 시 (세련된 느낌) */
+@media (hover: hover) {
+    #schedule-list .toss-card:hover {
+        transform: translateY(-4px);
+        border-color: #E8F3FF;
+        box-shadow: 0 12px 30px rgba(49, 130, 246, 0.06);
+    }
+}
+
+/* 탭 바 버튼 클릭 시 튕기는 효과 */
+nav button:active {
+    transform: scale(0.88);
+}
+
+/* 입력창 포커스 시 부드러운 확대 */
+.custom-input:focus {
+    transform: scale(1.01);
+    transition: transform 0.2s ease;
+}
+
+/* 전체 동선 보기 버튼 반응형 */
+button[onclick="resetMap()"] {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+button[onclick="resetMap()"]:active {
+    transform: scale(0.92);
+    /* 눌렀을 때 쏙 들어가는 느낌 */
+    filter: brightness(0.9);
+}
+
+/* 퀵 번역 버튼 반응형 효과 */
+button[onclick^="quickTrans"] {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button[onclick^="quickTrans"]:active {
+    transform: scale(0.92);
+    background-color: #f3f4f5 !important;
+}
+
+/* 세련된 핀 형태 마커 */
+.custom-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+/* 마커 몸체 (물방울 모양) */
+.marker-body {
+    width: 32px;
+    height: 32px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+}
+
+/* 아이콘 (똑바로 세우기) */
+.marker-body i {
+    transform: rotate(45deg);
+    color: white;
+    font-size: 16px;
+}
+
+/* 마커 꼬리 애니메이션 */
+.animate-marker {
+    animation: markerBounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes markerBounce {
+    0% {
+        transform: translateY(-20px) scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* [보정] 닫혔을 때 더 얇게 보이도록 수정 */
+.ticket-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    background-color: #F9FAFB; /* 펼쳐졌을 때 배경색 차이 주기 */
+}
+
+.ticket-content.expanded {
+    max-height: 600px;
+    opacity: 1;
+    /* margin-top 삭제 (구조적으로 해결) */
+}
