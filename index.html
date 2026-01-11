@@ -109,9 +109,8 @@
     </nav>
 
     <main id="tab-plan" class="tab-content active px-5 animate-fade-in">
-        <div class="flex gap-4 mb-6 text-center">
-            <div
-                class="flex-1 bg-white p-6 rounded-[28px] border border-gray-50 active:scale-95 transition cursor-default">
+    <div class="flex gap-4 mb-6 text-center">
+        <div class="flex-1 bg-white p-6 rounded-[28px] border border-gray-50 active:scale-95 transition cursor-default">
                 <p class="text-xs text-gray-400 font-bold mb-1 uppercase tracking-widest">도쿄 날씨</p>
                 <div id="weather-loading" class="text-sm text-gray-300 py-2 font-bold">불러오는 중...</div>
                 <div id="weather-info" class="hidden flex items-center justify-between w-full px-1">
@@ -131,8 +130,7 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="flex-1 bg-white p-6 rounded-[28px] border border-gray-50 active:scale-95 transition relative overflow-hidden flex flex-col items-center text-center">
+            <div class="flex-1 bg-white p-6 rounded-[28px] border border-gray-50 active:scale-95 transition flex flex-col items-center">
                 <p class="text-xs text-gray-400 font-bold mb-1 uppercase tracking-widest w-full">환율 트렌드</p>
 
                 <div class="flex flex-col items-center justify-center mt-1">
@@ -157,29 +155,27 @@
         </div>
         </div>
         <div class="toss-card p-0 overflow-hidden mb-6">
-            <div id="map"></div>
-            <div class="p-4 bg-white text-right border-t border-gray-50">
-                <button onclick="resetMap()"
-                    class="text-sm text-[#3182F6] font-bold bg-[#E8F3FF] px-5 py-2.5 rounded-full flex items-center gap-1 ml-auto">
-                    <i class="ph-bold ph-path"></i> 전체 동선 보기
-                </button>
-            </div>
+        <div id="map" class="w-full h-[300px]"></div> <div class="p-4 bg-white text-right border-t border-gray-50">
+            <button onclick="resetMap()"
+                class="text-sm text-[#3182F6] font-bold bg-[#E8F3FF] px-5 py-2.5 rounded-full flex items-center gap-1 ml-auto">
+                <i class="ph-bold ph-path"></i> 전체 동선 보기
+            </button>
         </div>
-        <div class="day-button-container mb-4">
-    <button onclick="updateMap(1)" data-day="1" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-[#3182F6] text-white shadow-md transition-all">1일차</button>
-    <button onclick="updateMap(2)" data-day="2" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">2일차</button>
-    <button onclick="updateMap(3)" data-day="3" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">3일차</button>
-    <button onclick="updateMap(4)" data-day="4" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">4일차</button>
-    <button onclick="updateMap(5)" data-day="5" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">5일차</button>
-    <button onclick="updateMap(6)" data-day="6" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">6일차</button>
-    <button onclick="updateMap(7)" data-day="7" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">7일차</button>
-</div>
-
-<div id="map" class="w-full h-[300px] rounded-[32px] shadow-inner mb-6 z-10 border border-gray-100"></div>
-
-<div id="schedule-list" class="space-y-4">
     </div>
-    </main>
+
+    <div class="day-button-container mb-4">
+        <button onclick="updateMap(1)" data-day="1" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-[#3182F6] text-white shadow-md transition-all">1일차</button>
+        <button onclick="updateMap(2)" data-day="2" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">2일차</button>
+        <button onclick="updateMap(3)" data-day="3" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">3일차</button>
+        <button onclick="updateMap(4)" data-day="4" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">4일차</button>
+        <button onclick="updateMap(5)" data-day="5" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">5일차</button>
+        <button onclick="updateMap(6)" data-day="6" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">6일차</button>
+        <button onclick="updateMap(7)" data-day="7" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">7일차</button>
+    </div>
+
+    <div id="schedule-list" class="space-y-4">
+        </div>
+</main>
 
     <article id="tab-calc" class="tab-content px-5 animate-fade-in">
     <div class="toss-card bg-white">
