@@ -165,15 +165,20 @@
                 </button>
             </div>
         </div>
-        <div class="flex gap-2 mb-6 overflow-x-auto pb-2 no-scrollbar">
-            <button onclick="updateMap(1)"
-                class="day-btn px-7 py-3.5 bg-[#3182F6] text-white rounded-full text-sm font-bold whitespace-nowrap"
-                data-day="1">1일차 시부야</button>
-            <button onclick="updateMap(2)"
-                class="day-btn px-7 py-3.5 bg-white text-gray-500 border border-gray-100 rounded-full text-sm font-bold whitespace-nowrap"
-                data-day="2">2일차 디즈니</button>
-        </div>
-        <div id="schedule-list" class="space-y-5"></div>
+        <div class="flex gap-2 overflow-x-auto pb-4 mb-4 no-scrollbar">
+    <button onclick="updateMap(1)" data-day="1" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-[#3182F6] text-white shadow-md transition-all">1일차</button>
+    <button onclick="updateMap(2)" data-day="2" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">2일차</button>
+    <button onclick="updateMap(3)" data-day="3" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">3일차</button>
+    <button onclick="updateMap(4)" data-day="4" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">4일차</button>
+    <button onclick="updateMap(5)" data-day="5" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">5일차</button>
+    <button onclick="updateMap(6)" data-day="6" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">6일차</button>
+    <button onclick="updateMap(7)" data-day="7" class="day-btn flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-gray-500 transition-all">7일차</button>
+</div>
+
+<div id="map" class="w-full h-[300px] rounded-[32px] shadow-inner mb-6 z-10 border border-gray-100"></div>
+
+<div id="schedule-list" class="space-y-4">
+    </div>
     </main>
 
     <article id="tab-calc" class="tab-content px-5 animate-fade-in">
