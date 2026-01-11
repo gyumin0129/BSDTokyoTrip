@@ -289,16 +289,40 @@ function toggleTicket(id) {
 async function doTranslate() {
     const input = document.getElementById('trans-input').value;
     const output = document.getElementById('trans-output');
+    const resultBox = document.getElementById('trans-result-box');
+    
     if (!input.trim()) return;
-    document.getElementById('trans-result-box').classList.remove('hidden');
+
+    // 결과창 보여주기 및 로딩 표시
+    resultBox.classList.remove('hidden');
     document.getElementById('trans-loading').classList.remove('hidden');
     output.classList.add('hidden');
+
     try {
         const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(input)}&langpair=ko|ja`);
         const data = await res.json();
+        
         document.getElementById('trans-loading').classList.add('hidden');
-        output.classList.remove('hidden'); output.innerText = data.responseData.translatedText;
-    } catch (e) { output.innerText = "번역에 실패했습니다."; }
+        output.classList.remove('hidden');
+        output.innerText = data.responseData.translatedText;
+
+        // [추가] 번역 완료 후 결과창으로 부드럽게 스크롤 이동
+        setTimeout(() => {
+            const offset = 100; // 상단바 높이 등을 고려한 여백
+            const elementPosition = resultBox.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }, 100);
+
+    } catch (e) { 
+        output.innerText = "번역에 실패했습니다."; 
+        document.getElementById('trans-loading').classList.add('hidden');
+        output.classList.remove('hidden');
+    }
 }
 
 function quickTrans(text) { document.getElementById('trans-input').value = text; doTranslate(); }
