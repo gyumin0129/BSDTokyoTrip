@@ -258,54 +258,76 @@ function updateMap(day) {
     const list = document.getElementById('schedule-list');
     list.innerHTML = "";
 
-    const dayData = schedules[day];
+    // [중요] 새로운 데이터 구조(schedules[day].items)에 맞춰 수정
+    const dayData = schedules[day] ? schedules[day].items : null;
     const bounds = [];
 
     if (dayData) {
         dayData.forEach((item, index) => {
-            // [수정] 타입별 색상 및 아이콘 설정
-            let markerColor = "#3182F6"; // 기본 파랑 (관광/이동)
+            let markerColor = "#3182F6"; 
             let iconClass = "ph-fill ph-map-pin";
 
-            if (item.type === "식사") {
-                markerColor = "#FF5D5D"; // 빨강
+            // 타입 구분 (식사, 관광 등 키워드 포함 시)
+            if (item.place.includes("식사") || item.desc.includes("식사")) {
+                markerColor = "#FF5D5D";
                 iconClass = "ph-fill ph-fork-knife";
-            } else if (item.type === "관광") {
-                markerColor = "#3182F6"; // 파랑
-                iconClass = "ph-fill ph-camera";
-            } else if (item.type === "이동") {
-                markerColor = "#4E5968"; // 회색
+            } else if (item.place.includes("공항") || item.place.includes("이동")) {
+                markerColor = "#4E5968";
                 iconClass = "ph-fill ph-train";
+            } else {
+                markerColor = "#3182F6";
+                iconClass = "ph-fill ph-camera";
             }
 
             const customIcon = L.divIcon({
                 className: 'custom-marker animate-marker',
-                html: `
-                    <div class="marker-body" style="background-color: ${markerColor};">
-                        <i class="${iconClass}"></i>
-                    </div>`,
+                html: `<div class="marker-body" style="background-color: ${markerColor};"><i class="${iconClass}"></i></div>`,
                 iconSize: [32, 32],
-                iconAnchor: [16, 32] // 꼬리 끝이 지점에 닿게 설정
+                iconAnchor: [16, 32]
             });
 
             const m = L.marker([item.lat, item.lng], { icon: customIcon }).addTo(map);
-            m.bindPopup(`<b style="font-family:Pretendard;">${item.title}</b><br><span style="font-size:12px; color:#8B95A1;">${item.desc}</span>`);
+            m.bindPopup(`<b style="font-family:Pretendard;">${item.place}</b><br><span style="font-size:12px; color:#8B95A1;">${item.desc}</span>`);
 
             markers.push(m);
             bounds.push([item.lat, item.lng]);
 
-            let typeColor = (item.type === "식사" || item.type === "술") ? "bg-red-50 text-red-500" : "bg-blue-50 text-blue-500";
-
-            const directionBtn = `<button onclick="event.stopPropagation(); window.open('http://googleusercontent.com/maps.google.com/maps?daddr=${item.lat},${item.lng}&travelmode=transit', '_blank')" class="mt-3 mr-2 text-[11px] bg-[#E8F3FF] text-[#3182F6] px-4 py-2 rounded-xl font-bold flex items-center gap-1.5 active:scale-95 transition"><i class="ph-bold ph-navigation-arrow"></i> 길찾기</button>`;
-            const busyBtn = (item.type === "식사" || item.type === "술") ? `<button onclick="event.stopPropagation(); window.open('https://www.google.com/maps/search/${encodeURIComponent(item.title)}', '_blank')" class="mt-3 text-[11px] bg-gray-50 text-gray-500 px-4 py-2 rounded-xl font-bold flex items-center gap-1.5 active:scale-95 transition"><i class="ph-bold ph-chart-bar"></i> 혼잡도</button>` : '';
-
-            list.innerHTML += `<div class="toss-card flex gap-5 p-6 mb-0 cursor-pointer" onclick="focusMap(${item.lat}, ${item.lng})"><div class="flex-shrink-0 w-10 text-center"><div class="w-8 h-8 rounded-full bg-[#333D4B] text-white text-sm flex items-center justify-center font-bold">${index + 1}</div></div><div class="flex-grow"><div class="flex items-center gap-2 text-xs font-bold text-gray-400 mb-1"><span>${item.time}</span><span class="px-2 py-0.5 rounded-full ${typeColor}">${item.type}</span></div><h3 class="text-xl font-bold text-[#191F28]">${item.title}</h3><p class="text-sm text-[#8B95A1] mt-1">${item.desc}</p><div class="flex flex-wrap">${directionBtn}${busyBtn}</div></div></div>`;
-        }); // 괄호 닫힘 누락 수정
+            // 리스트 UI 생성
+            const typeTag = item.place.includes("식사") ? "식사" : "일정";
+            const typeColor = typeTag === "식사" ? "bg-red-50 text-red-500" : "bg-blue-50 text-blue-500";
+            
+            list.innerHTML += `
+                <div class="toss-card flex gap-5 p-6 mb-0 cursor-pointer active:scale-95 transition" onclick="focusMap(${item.lat}, ${item.lng})">
+                    <div class="flex-shrink-0 w-10 text-center">
+                        <div class="w-8 h-8 rounded-full bg-[#333D4B] text-white text-sm flex items-center justify-center font-bold">${index + 1}</div>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-2 text-xs font-bold text-gray-400 mb-1">
+                            <span>${item.time}</span>
+                            <span class="px-2 py-0.5 rounded-full ${typeColor}">${typeTag}</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#191F28]">${item.place}</h3>
+                        <p class="text-sm text-[#8B95A1] mt-1">${item.desc}</p>
+                    </div>
+                </div>`;
+        });
 
         if (bounds.length > 0) {
             map.flyToBounds(bounds, { padding: [50, 50], duration: 1.2 });
         }
     }
+
+    // 버튼 활성화 스타일 업데이트
+    document.querySelectorAll('.day-btn').forEach(btn => {
+        if (btn.dataset.day == day) {
+            btn.classList.add('bg-[#3182F6]', 'text-white', 'shadow-md');
+            btn.classList.remove('bg-white', 'text-gray-500');
+        } else {
+            btn.classList.remove('bg-[#3182F6]', 'text-white', 'shadow-md');
+            btn.classList.add('bg-white', 'text-gray-500');
+        }
+    });
+}
 
     document.querySelectorAll('.day-btn').forEach(btn => {
         if (btn.dataset.day == day) {
