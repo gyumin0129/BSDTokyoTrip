@@ -253,13 +253,19 @@ let markers = [];
 
 function updateMap(day) {
     currentDay = day;
-    markers.forEach(m => map.removeLayer(m));
+    // 기존 마커 제거
+    if (markers) {
+        markers.forEach(m => map.removeLayer(m));
+    }
     markers = [];
+    
     const list = document.getElementById('schedule-list');
+    if (!list) return;
     list.innerHTML = "";
 
-    // [중요] 새로운 데이터 구조(schedules[day].items)에 맞춰 수정
-    const dayData = schedules[day] ? schedules[day].items : null;
+    // 새로운 데이터 구조(schedules[day].items) 접근
+    const dayInfo = schedules[day];
+    const dayData = dayInfo ? dayInfo.items : null;
     const bounds = [];
 
     if (dayData) {
@@ -267,7 +273,7 @@ function updateMap(day) {
             let markerColor = "#3182F6"; 
             let iconClass = "ph-fill ph-map-pin";
 
-            // 타입 구분 (식사, 관광 등 키워드 포함 시)
+            // 타입 구분
             if (item.place.includes("식사") || item.desc.includes("식사")) {
                 markerColor = "#FF5D5D";
                 iconClass = "ph-fill ph-fork-knife";
@@ -293,8 +299,9 @@ function updateMap(day) {
             bounds.push([item.lat, item.lng]);
 
             // 리스트 UI 생성
-            const typeTag = item.place.includes("식사") ? "식사" : "일정";
-            const typeColor = typeTag === "식사" ? "bg-red-50 text-red-500" : "bg-blue-50 text-blue-500";
+            const isFood = item.place.includes("식사") || item.desc.includes("식사");
+            const typeTag = isFood ? "식사" : "일정";
+            const typeColor = isFood ? "bg-red-50 text-red-500" : "bg-blue-50 text-blue-500";
             
             list.innerHTML += `
                 <div class="toss-card flex gap-5 p-6 mb-0 cursor-pointer active:scale-95 transition" onclick="focusMap(${item.lat}, ${item.lng})">
@@ -311,6 +318,23 @@ function updateMap(day) {
                     </div>
                 </div>`;
         });
+
+        if (bounds.length > 0) {
+            map.flyToBounds(bounds, { padding: [50, 50], duration: 1.2 });
+        }
+    }
+
+    // 버튼 활성화 스타일 업데이트
+    document.querySelectorAll('.day-btn').forEach(btn => {
+        if (btn.dataset.day == day) {
+            btn.classList.add('bg-[#3182F6]', 'text-white', 'shadow-md');
+            btn.classList.remove('bg-white', 'text-gray-500');
+        } else {
+            btn.classList.remove('bg-[#3182F6]', 'text-white', 'shadow-md');
+            btn.classList.add('bg-white', 'text-gray-500');
+        }
+    });
+}
 
         if (bounds.length > 0) {
             map.flyToBounds(bounds, { padding: [50, 50], duration: 1.2 });
