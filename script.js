@@ -103,23 +103,38 @@ function calculateDutch() {
     const jpyInput = document.getElementById('jpy-input').value;
     const krwResult = document.getElementById('krw-result');
     const totalKrwResult = document.getElementById('total-krw-result');
+    const jpyPerPerson = document.getElementById('jpy-per-person');
 
+    // 입력값이 있고 환율 정보가 있을 때 실행
     if (jpyInput && currentRate) {
+        // 1. 전체 원화 합계 계산
         const totalKrw = (jpyInput / 100) * (currentRate * 100);
-        const perPerson = totalKrw / people;
+        
+        // 2. 인당 엔화 계산 (단순 1/N)
+        const perPersonJpy = jpyInput / people;
+        
+        // 3. 인당 원화 계산
+        const perPersonKrw = totalKrw / people;
 
+        // 시각적 피드백을 위해 살짝 흐리게
         krwResult.style.opacity = "0.5";
-        totalKrwResult.style.opacity = "0.5";
+        jpyPerPerson.style.opacity = "0.5";
 
         setTimeout(() => {
+            // 소수점 없이 깔끔하게 반올림하여 출력
             totalKrwResult.innerText = Math.round(totalKrw).toLocaleString();
-            krwResult.innerText = Math.round(perPerson).toLocaleString();
+            krwResult.innerText = Math.round(perPersonKrw).toLocaleString();
+            jpyPerPerson.innerText = Math.round(perPersonJpy).toLocaleString();
+            
+            // 다시 선명하게
             krwResult.style.opacity = "1";
-            totalKrwResult.style.opacity = "1";
+            jpyPerPerson.style.opacity = "1";
         }, 50);
     } else {
+        // 값이 없을 때 초기화
         totalKrwResult.innerText = '0';
         krwResult.innerText = '0';
+        if(jpyPerPerson) jpyPerPerson.innerText = '0';
     }
 }
 
