@@ -225,83 +225,146 @@
 </article>
 
     <article id="tab-wallet" class="tab-content px-5 animate-fade-in">
-        <div class="mb-6 px-1">
-            <h2 class="text-2xl font-bold text-[#191F28]">티켓 지갑</h2>
-            <p class="text-base text-gray-400 font-medium">친구들 것까지 한 눈에!</p>
-        </div>
+    <div class="mb-6 px-1">
+        <h2 class="text-2xl font-bold text-[#191F28]">티켓 지갑</h2>
+        <p class="text-base text-gray-400 font-medium">대원들의 입장권을 한곳에!</p>
+    </div>
 
-        <div class="toss-card cursor-pointer active:scale-[0.99] transition mb-3 overflow-hidden"
-            onclick="window.open('https://www.vjw.digital.go.jp', '_blank')">
-            <div class="flex justify-between items-center p-5">
-                <div class="flex items-center gap-5">
-                    <div
-                        class="w-14 h-14 rounded-full bg-yellow-100 flex items-center justify-center text-2xl text-yellow-600 flex-shrink-0">
-                        <i class="ph-fill ph-identification-card"></i>
-                    </div>
-                    <div>
-                        <p class="text-sm text-yellow-700 font-bold mb-0.5">입국 수속 필수</p>
-                        <h3 class="text-xl font-bold text-[#191F28] tracking-tight">Visit Japan Web</h3>
-                    </div>
+    <div class="toss-card cursor-pointer active:scale-[0.99] transition mb-3 overflow-hidden"
+        onclick="window.open('https://www.vjw.digital.go.jp', '_blank')">
+        <div class="flex justify-between items-center p-5">
+            <div class="flex items-center gap-5">
+                <div class="w-14 h-14 rounded-full bg-yellow-100 flex items-center justify-center text-2xl text-yellow-600 flex-shrink-0">
+                    <i class="ph-fill ph-identification-card"></i>
                 </div>
-                <i class="ph-bold ph-arrow-square-out text-gray-300 text-xl"></i>
-            </div>
-        </div>
-
-        <p class="text-[11px] text-red-500 font-bold mb-6 px-2 opacity-90 tracking-tight">
-            <i class="ph-bold ph-warning-circle"></i> 공항 인터넷이 느릴 수 있으니 미리 QR을 캡처해두세요!
-        </p>
-
-        <div class="toss-card cursor-pointer active:scale-[0.99] transition mb-3 overflow-hidden"
-            onclick="window.open('여기에_링크', '_blank')">
-            <div class="flex justify-between items-center p-5">
-                <div class="flex items-center gap-5">
-                    <div
-                        class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center text-2xl text-blue-600 flex-shrink-0">
-                        <i class="ph-fill ph-bed"></i>
-                    </div>
-                    <div>
-                        <p class="text-sm text-blue-600 font-bold mb-0.5">체크인 시 제시</p>
-                        <h3 class="text-xl font-bold text-[#191F28]">숙소 예약 바우처</h3>
-                    </div>
-                </div>
-                <i class="ph-bold ph-file-text text-gray-300 text-xl"></i>
-            </div>
-        </div>
-
-        <div class="toss-card cursor-pointer active:scale-[0.99] transition mb-3 overflow-hidden"
-            onclick="toggleTicket('ticket-disney')">
-            <div class="flex justify-between items-center p-5">
-                <div class="flex items-center gap-5">
-                    <div
-                        class="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center text-2xl text-purple-600 flex-shrink-0">
-                        <i class="ph-fill ph-castle-turret"></i>
-                    </div>
-                    <div>
-                        <p class="text-sm text-purple-600 font-bold mb-0.5">입장권 (4명)</p>
-                        <h3 class="text-xl font-bold text-[#191F28]">디즈니랜드 QR</h3>
-                    </div>
-                </div>
-                <span id="btn-text-disney"
-                    class="text-[10px] bg-purple-50 text-purple-500 px-2.5 py-1.5 rounded-lg font-bold">열기</span>
-            </div>
-
-            <div id="ticket-disney" class="ticket-content bg-gray-50 border-t border-gray-100">
-                <div class="p-5">
-                    <p class="text-xs text-center text-gray-400 mb-4 font-bold">👉 옆으로 넘겨서 확인</p>
-                    <div class="flex gap-4 overflow-x-auto pb-2 snap-x no-scrollbar">
-                        <div class="snap-center shrink-0 w-56 bg-white p-4 rounded-2xl text-center shadow-sm">
-                            <p class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-tighter">My QR</p>
-                            <div
-                                class="aspect-square bg-gray-50 rounded-xl flex items-center justify-center text-[10px] font-bold text-gray-300">
-                                qr1.jpg 이미지
-                            </div>
-                        </div>
-                    </div>
+                <div>
+                    <p class="text-sm text-yellow-700 font-bold mb-0.5">입국 수속 필수</p>
+                    <h3 class="text-xl font-bold text-[#191F28] tracking-tight">Visit Japan Web</h3>
                 </div>
             </div>
+            <i class="ph-bold ph-arrow-square-out text-gray-300 text-xl"></i>
         </div>
+    </div>
+
+    <div class="toss-card cursor-pointer active:scale-[0.99] transition mb-3 overflow-hidden"
+        onclick="window.open('https://www.airbnb.com/trips', '_blank')">
+        <div class="flex justify-between items-center p-5">
+            <div class="flex items-center gap-5">
+                <div class="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center text-2xl text-[#FF5A5F] flex-shrink-0">
+                    <i class="ph-fill ph-house-line"></i>
+                </div>
+                <div>
+                    <p class="text-sm text-[#FF5A5F] font-bold mb-0.5">숙소 체크인 가이드</p>
+                    <h3 class="text-xl font-bold text-[#191F28]">에어비앤비 예약 내역</h3>
+                </div>
+            </div>
+            <i class="ph-bold ph-arrow-square-out text-gray-300 text-xl"></i>
         </div>
-    </article>
+    </div>
+
+    <p class="text-[11px] text-red-500 font-bold mb-6 px-2 opacity-90 tracking-tight">
+        <i class="ph-bold ph-warning-circle"></i> 공항/지하에서 인터넷이 느릴 수 있으니 QR은 미리 캡처해두세요!
+    </p>
+
+    <div class="toss-card cursor-pointer active:scale-[0.99] transition mb-3 overflow-hidden" onclick="toggleTicket('ticket-disney')">
+        <div class="flex justify-between items-center p-5">
+            <div class="flex items-center gap-5">
+                <div class="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center text-2xl text-purple-600 flex-shrink-0">
+                    <i class="ph-fill ph-castle-turret"></i>
+                </div>
+                <div>
+                    <p class="text-sm text-purple-600 font-bold mb-0.5">입장권 (4명)</p>
+                    <h3 class="text-xl font-bold text-[#191F28]">디즈니랜드 QR</h3>
+                </div>
+            </div>
+            <span id="btn-text-disney" class="text-[10px] bg-purple-50 text-purple-500 px-2.5 py-1.5 rounded-lg font-bold">열기</span>
+        </div>
+        <div id="ticket-disney" class="ticket-content bg-gray-50 border-t border-gray-100">
+            <div class="p-5">
+                <p class="text-xs text-center text-gray-400 mb-4 font-bold">👉 옆으로 넘겨서 확인 (총 4장)</p>
+                <div class="flex gap-4 overflow-x-auto pb-2 snap-x no-scrollbar">
+                    <div class="snap-center shrink-0 w-56 bg-white p-4 rounded-2xl text-center shadow-sm">
+                        <p class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-tighter">Ticket 1</p>
+                        <div class="aspect-square bg-gray-50 rounded-xl flex items-center justify-center text-[10px] font-bold text-gray-300">disney1.jpg</div>
+                    </div>
+                    <div class="snap-center shrink-0 w-56 bg-white p-4 rounded-2xl text-center shadow-sm">
+                        <p class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-tighter">Ticket 2</p>
+                        <div class="aspect-square bg-gray-50 rounded-xl flex items-center justify-center text-[10px] font-bold text-gray-300">disney2.jpg</div>
+                    </div>
+                    <div class="snap-center shrink-0 w-56 bg-white p-4 rounded-2xl text-center shadow-sm">
+                        <p class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-tighter">Ticket 3</p>
+                        <div class="aspect-square bg-gray-50 rounded-xl flex items-center justify-center text-[10px] font-bold text-gray-300">disney3.jpg</div>
+                    </div>
+                    <div class="snap-center shrink-0 w-56 bg-white p-4 rounded-2xl text-center shadow-sm">
+                        <p class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-tighter">Ticket 4</p>
+                        <div class="aspect-square bg-gray-50 rounded-xl flex items-center justify-center text-[10px] font-bold text-gray-300">disney4.jpg</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toss-card cursor-pointer active:scale-[0.99] transition mb-3 overflow-hidden" onclick="toggleTicket('ticket-harry')">
+        <div class="flex justify-between items-center p-5">
+            <div class="flex items-center gap-5">
+                <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-2xl text-blue-600 flex-shrink-0">
+                    <i class="ph-fill ph-magic-wand"></i>
+                </div>
+                <div>
+                    <p class="text-sm text-blue-600 font-bold mb-0.5">입장권 (4명)</p>
+                    <h3 class="text-xl font-bold text-[#191F28]">해리포터 스튜디오</h3>
+                </div>
+            </div>
+            <span id="btn-text-harry" class="text-[10px] bg-blue-50 text-blue-500 px-2.5 py-1.5 rounded-lg font-bold">열기</span>
+        </div>
+        <div id="ticket-harry" class="ticket-content bg-gray-50 border-t border-gray-100">
+            <div class="p-5">
+                <p class="text-xs text-center text-gray-400 mb-4 font-bold">👉 옆으로 넘겨서 확인 (총 4장)</p>
+                <div class="flex gap-4 overflow-x-auto pb-2 snap-x no-scrollbar">
+                    <div class="snap-center shrink-0 w-56 bg-white p-4 rounded-2xl text-center shadow-sm">
+                        <p class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-tighter">Ticket 1</p>
+                        <div class="aspect-square bg-gray-50 rounded-xl flex items-center justify-center text-[10px] font-bold text-gray-300">harry1.jpg</div>
+                    </div>
+                    <div class="snap-center shrink-0 w-56 bg-white p-4 rounded-2xl text-center shadow-sm">
+                        <p class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-tighter">Ticket 2</p>
+                        <div class="aspect-square bg-gray-50 rounded-xl flex items-center justify-center text-[10px] font-bold text-gray-300">harry2.jpg</div>
+                    </div>
+                    <div class="snap-center shrink-0 w-56 bg-white p-4 rounded-2xl text-center shadow-sm">
+                        <p class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-tighter">Ticket 3</p>
+                        <div class="aspect-square bg-gray-50 rounded-xl flex items-center justify-center text-[10px] font-bold text-gray-300">harry3.jpg</div>
+                    </div>
+                    <div class="snap-center shrink-0 w-56 bg-white p-4 rounded-2xl text-center shadow-sm">
+                        <p class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-tighter">Ticket 4</p>
+                        <div class="aspect-square bg-gray-50 rounded-xl flex items-center justify-center text-[10px] font-bold text-gray-300">harry4.jpg</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toss-card cursor-pointer active:scale-[0.99] transition mb-3 overflow-hidden" onclick="toggleTicket('ticket-sky')">
+        <div class="flex justify-between items-center p-5">
+            <div class="flex items-center gap-5">
+                <div class="w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center text-2xl text-orange-600 flex-shrink-0">
+                    <i class="ph-fill ph-buildings"></i>
+                </div>
+                <div>
+                    <p class="text-sm text-orange-600 font-bold mb-0.5">입장권 (그룹)</p>
+                    <h3 class="text-xl font-bold text-[#191F28]">도쿄 스카이트리</h3>
+                </div>
+            </div>
+            <span id="btn-text-sky" class="text-[10px] bg-orange-50 text-orange-500 px-2.5 py-1.5 rounded-lg font-bold">열기</span>
+        </div>
+        <div id="ticket-sky" class="ticket-content bg-gray-50 border-t border-gray-100">
+            <div class="p-5 flex justify-center">
+                <div class="w-56 bg-white p-4 rounded-2xl text-center shadow-sm">
+                    <p class="text-[10px] font-bold text-gray-400 mb-3 uppercase tracking-tighter">Group Ticket</p>
+                    <div class="aspect-square bg-gray-50 rounded-xl flex items-center justify-center text-[10px] font-bold text-gray-300">skytree.jpg</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
 
     <article id="tab-talk" class="tab-content px-5 animate-fade-in">
         <div class="toss-card p-6 bg-white">
