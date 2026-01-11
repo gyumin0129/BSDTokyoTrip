@@ -255,3 +255,18 @@ button[onclick^="quickTrans"]:active {
     opacity: 1;
     /* margin-top 삭제 (구조적으로 해결) */
 }
+
+/* 날짜 버튼들을 감싸는 div */
+.day-button-container {
+    display: flex;
+    overflow-x: auto; /* 가로 스크롤 허용 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+    gap: 8px;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch; /* 부드러운 스크롤 */
+}
+
+/* 스크롤바 숨기기 (깔끔하게) */
+.day-button-container::-webkit-scrollbar {
+    display: none;
+}
