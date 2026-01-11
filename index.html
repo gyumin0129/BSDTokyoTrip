@@ -177,39 +177,51 @@
     </main>
 
     <article id="tab-calc" class="tab-content px-5 animate-fade-in">
-        <div class="toss-card bg-white">
-            <p class="text-[#8B95A1] font-bold text-sm mb-4">결제 금액 (￥)</p>
-            <div class="relative mb-8">
-                <input type="number" id="jpy-input" class="custom-input pr-12" placeholder="0"
-                    oninput="calculateDutch()">
-                <span class="absolute right-0 top-1/2 -translate-y-1/2 text-2xl font-bold text-[#ADB5BD]">￥</span>
-            </div>
-            <div class="flex items-center gap-2 mb-8 px-1">
-                <span class="text-sm font-bold text-gray-400">총 합계:</span>
-                <span id="total-krw-result" class="text-sm font-bold text-[#191F28]">0</span>
-                <span class="text-sm font-bold text-[#191F28]">원</span>
-            </div>
-            <p class="text-[#8B95A1] font-bold text-sm mb-4">나눌 인원 (명)</p>
-            <div class="flex items-center gap-8 mb-10 bg-[#F9FAFB] p-5 rounded-[24px]">
-                <button onclick="changePeople(-1)"
-                    class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-400 active:scale-90 transition">
-                    <i class="ph-bold ph-minus"></i>
-                </button>
-                <span id="people-count" class="text-3xl font-bold text-[#191F28]">1</span>
-                <button onclick="changePeople(1)"
-                    class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-[#3182F6] active:scale-90 transition">
-                    <i class="ph-bold ph-plus"></i>
-                </button>
-            </div>
-
-            <p class="text-[#8B95A1] font-bold text-sm mb-4">1인당 약</p>
-            <div class="flex items-baseline gap-1">
-                <span id="krw-result" class="text-5xl font-bold text-[#3182F6]">0</span>
-                <span class="text-xl font-bold text-[#3182F6]">원</span>
-            </div>
-            <p class="text-[11px] text-gray-400 mt-3 font-medium">※ 실시간 환율 및 1/N 정산 적용</p>
+    <div class="toss-card bg-white">
+        <p class="text-[#8B95A1] font-bold text-sm mb-4">결제 금액 (￥)</p>
+        <div class="relative mb-8">
+            <input type="number" id="jpy-input" class="custom-input pr-12" placeholder="0" oninput="calculateDutch()">
+            <span class="absolute right-0 top-1/2 -translate-y-1/2 text-2xl font-bold text-[#ADB5BD]">￥</span>
         </div>
-    </article>
+
+        <p class="text-[#8B95A1] font-bold text-sm mb-4">나눌 인원 (명)</p>
+        <div class="flex items-center gap-8 mb-10 bg-[#F9FAFB] p-5 rounded-[24px]">
+            <button onclick="changePeople(-1)" class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-400 active:scale-90 transition">
+                <i class="ph-bold ph-minus"></i>
+            </button>
+            <span id="people-count" class="text-3xl font-bold text-[#191F28]">1</span>
+            <button onclick="changePeople(1)" class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-[#3182F6] active:scale-90 transition">
+                <i class="ph-bold ph-plus"></i>
+            </button>
+        </div>
+
+        <div class="mt-8 bg-gray-50/50 p-6 rounded-[32px] border border-gray-100">
+            <p class="text-[#8B95A1] font-bold text-xs mb-4 uppercase tracking-wider">1인당 정산 금액</p>
+            
+            <div class="flex flex-col">
+                <div class="flex items-baseline gap-1.5">
+                    <span id="jpy-per-person" class="text-6xl font-extrabold text-[#3182F6] tracking-tighter transition-all">0</span>
+                    <span class="text-2xl font-bold text-[#3182F6]">￥</span>
+                </div>
+                
+                <div class="flex items-center gap-1.5 mt-2 px-1">
+                    <span class="text-sm font-bold text-gray-400">약</span>
+                    <span id="krw-result" class="text-base font-bold text-gray-500">0</span>
+                    <span class="text-sm font-bold text-gray-500">원</span>
+                </div>
+            </div>
+            
+            <div class="mt-6 pt-5 border-t border-dashed border-gray-200">
+                <div class="flex justify-between items-center text-[11px] font-bold">
+                    <span class="text-gray-400 font-medium">전체 합계 (KRW)</span>
+                    <span class="text-gray-500"><span id="total-krw-result">0</span>원</span>
+                </div>
+            </div>
+        </div>
+        
+        <p class="text-[11px] text-gray-300 mt-4 font-medium text-center">※ 실시간 환율 및 1/N 정산 적용</p>
+    </div>
+</article>
 
     <article id="tab-wallet" class="tab-content px-5 animate-fade-in">
         <div class="mb-6 px-1">
