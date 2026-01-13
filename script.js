@@ -65,11 +65,13 @@ async function fetchAllData() {
         const r = await fetch('https://api.frankfurter.app/latest?from=JPY&to=KRW');
         const d = await r.json();
         baseRate = d.rates.KRW;
-        calculateFinalRate();
-        updateRateTrend(baseRate);
+        
+        calculateFinalRate(); // 환율 계산기 업데이트
+        
+        // [여기서 호출!] 실제 등락폭 계산 함수 실행
+        updateRateTrend(baseRate); 
     } catch (e) {
-        document.getElementById('rate-display').innerText = "920.00";
-        updateRateTrend(920.00);
+        console.log("환율 데이터 로드 실패");
     }
 
     try {
