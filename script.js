@@ -167,27 +167,56 @@ function changePeople(delta) {
     calculateDutch();
 }
 
-function updateRateTrend(currentRate) {
-    if (!currentRate) return;
-    const fakeDiff = (currentRate * 0.0015);
-    const diff = fakeDiff;
-    const percent = ((diff / (currentRate - diff)) * 100).toFixed(2);
+// 환율 등락폭 실제 계산 및 UI 업데이트
+async function updateRateTrend(currentRate) {
     const percentEl = document.getElementById('rate-trend-percent');
     const diffEl = document.getElementById('rate-trend-diff');
     const iconEl = document.getElementById('rate-trend-icon');
     const barEl = document.getElementById('rate-trend-bar');
-    if (!percentEl) return;
-    const color = '#F04452'; const icon = 'ph-caret-up';
-    percentEl.innerText = `+${percent}%`;
-    percentEl.style.color = color;
-    diffEl.innerText = `▲ ${diff.toFixed(2)}원`;
-    diffEl.style.color = color;
-    iconEl.className = `ph-bold ${icon}`;
-    iconEl.style.color = color;
-    setTimeout(() => {
-        barEl.style.width = `40%`;
-        barEl.style.backgroundColor = color;
-    }, 500);
+
+    if (!percentEl || !currentRate) return;
+
+    try {
+        // 1. 어제 날짜 구하기 (주말 고려하여 안전하게 2~3일 전 데이터 요청 가능)
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const dateStr = yesterday.toISOString().split('T')[0];
+
+        // 2. 어제 자 환율 가져오기
+        const response = await fetch(`https://api.frankfurter.app/${dateStr}?from=JPY&to=KRW`);
+        const data = await response.json();
+        const yesterdayRate = data.rates.KRW;
+
+        // 3. 오늘 환율과 비교 계산 (100엔 기준)
+        const diff = (currentRate * 100) - (yesterdayRate * 100);
+        const percent = (diff / (yesterdayRate * 100) * 100).toFixed(2);
+        
+        // 4. 상승/하락에 따른 UI 결정
+        const isUp = diff >= 0;
+        const color = isUp ? '#F04452' : '#3182F6'; // 상승 빨강, 하락 파랑
+        const icon = isUp ? 'ph-caret-up' : 'ph-caret-down';
+        const sign = isUp ? '+' : '';
+
+        // 5. 반영
+        percentEl.innerText = `${sign}${percent}%`;
+        percentEl.style.color = color;
+        diffEl.innerText = `${isUp ? '▲' : '▼'} ${Math.abs(diff).toFixed(2)}원`;
+        diffEl.style.color = color;
+        
+        iconEl.className = `ph-bold ${icon}`;
+        iconEl.style.color = color;
+        
+        // 그래프 바 애니메이션 (등락폭에 따라 20%~80% 사이로 가변)
+        const barWidth = Math.min(Math.max(Math.abs(percent) * 50, 20), 80);
+        setTimeout(() => {
+            barEl.style.width = `${barWidth}%`;
+            barEl.style.backgroundColor = color;
+        }, 500);
+
+    } catch (e) {
+        console.log("트렌드 로드 실패, 기본값 유지");
+        percentEl.innerText = "연결중";
+    }
 }
 
 /** [PART 4] 지도 및 일정 **/
